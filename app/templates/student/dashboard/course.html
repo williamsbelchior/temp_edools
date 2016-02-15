@@ -1,118 +1,72 @@
-<div class="dashboard">
-  <div class="container dashboard-panel">
-    <spinner name="course"></spinner>
-    <div hide-on-load="course" class="row course-container">
-      <div class="course-infos col-md-7">
-        <div class="course-page panel text-center">
-          <br/>
-          <a link-to=".">
-            <img class="course-page-image" ng-if="!course.image_url" ng-src="assets/images/missing-course-logo.png" alt="{{ course.name }}">
-            <img class="course-page-image" ng-if="course.image_url" ng-src="{{ course.image_url }}" alt="{{ course.name }}">
-          </a>
-          <h4>
-            <a link-to=".">
-              <strong>{{ course.name }}</strong>
-            </a>
-          </h4>
-        </div>
+<article class="dashboard">
+	<header class="article-header article-header-color-07">
+		<div class="center center-width-5">
+			<div class="article-header-content">
+				<h2 class="article-header-title">{{ course.name }}</h2>
+			</div>
+		</div>
+	</header>
+	<div class="article-content center center-width-5">
+		<div class="clearfix">
+			<div class="share">
+				<span class="share-text">Compartilhe em suas redes</span>
 
-        <div class="course-content panel">
-          <div class="panel-heading">
-            <strong class="panel-title">Conteúdo do curso</strong>
-            <span ng-if="enrollment.available_until" class="available-title">
-              Disponível até: {{ enrollment.available_until | toDateTime }} horas
-            </span>
-          </div>
-          <div class="panel-body">
-            <content-tree type="dashboard" ng-model="course" enrollment="enrollment" lessons-info="lessons_info"></content-tree>
-          </div>
-        </div>
-      </div>
+				<div class="social-media">
+					<span class="social-media-counter">000</span>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=http://atendimento-novo.homolog.iea.com.br/cursos/administracao-de-pequenos-negocios-a-arte-de-gerenciar-com-facilidade-2/"
+							class="social-media-link facebook" title="Facebook">
+						<svg width="17" height="17" class="social-media-link-image">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="assets/images/ico/symbol-defs.svg#icon-facebook"></use>
+						</svg>
+					</a>
+				</div>
+				<div class="social-media">
+					<span class="social-media-counter">000</span>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://atendimento-novo.homolog.iea.com.br/cursos/administracao-de-pequenos-negocios-a-arte-de-gerenciar-com-facilidade-2/"
+							class="social-media-link linkedin" title="Linkedin">
+						<svg width="17" height="17" class="social-media-link-image">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="assets/images/ico/symbol-defs.svg#icon-linkedin"></use>
+						</svg>
+					</a>
+				</div>
 
-      <div class="col-md-5">
-        <div class="course-progress panel">
-          <div class="panel-heading">
-            <span class="panel-title">
-              <i class="panel-title-icon fa fa-check"></i>Progresso
-            </span>
-          </div>
+				<div class="social-media">
+					<!-- <span class="social-media-counter">000</span> -->
+					<a href="https://twitter.com/home?status=http://atendimento-novo.homolog.iea.com.br/cursos/administracao-de-pequenos-negocios-a-arte-de-gerenciar-com-facilidade-2/"
+							class="social-media-link twitter" title="Twitter">
+						<svg width="17" height="17" class="social-media-link-image">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="assets/images/ico/symbol-defs.svg#icon-twitter"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+			<div class="clearfix">
+				<nav class="back" ng-if="$session.get() != undefined">
+					<a link-to="school.dashboard.enrollments" class="back-link">&lt; Visualizar cursos</a>
+				</nav>
+			</div>
 
-          <div class="panel-body">
-            <stacked-progress enrollment-id="{{ enrollment.id }}" success="{{ lessons_info.completed.length }}" warning="{{ lessons_info.in_progress.length }}" total="{{ lessons_info.total }}"></stacked-progress>
-          </div>
-        </div>
+			<div class="article-content-text">
+				<div class="article-content-left">
+					<div class="content-tree">
+						<content-tree type="dashboard" ng-model="course" enrollment="enrollment" lessons-info="lessons_info"></content-tree>
+					</div>
 
-        <div class="panel" ng-if="extraContents.length > 0">
-          <div class="panel-heading">
-            <strong class="panel-title">Material complementar</strong>
-          </div>
-          <div class="panel-body">
-            <spinner name="extraContents" class="small"></spinner>
-            <ul class="modules">
-              <li class="module-item root" ng-repeat="extraContent in extraContents">
-                <div class="class">
-                  <div class="class-info" ng-class="{'active': $state.params.extraContentId == extraContent.id.toString()}">
-                    <media-icon type="extraContent.media.type"></media-icon>
-                    <span ng-class="{'label-info': $state.params.extraContentId == extraContent.id.toString()}" ng-if="!extraContent.disabled">
-                      <a class="title" link-to="school.dashboard.course.extraContent.media({ extraContentId: extraContent.id })">{{ extraContent.title }}</a>
-                    </span>
-                    <span ng-if="extraContent.disabled" class="title">
-                      {{ extraContent.title }}
-                    </span>
-                    <span ng-if="extraContent.disabled" class="pull-right">
-                      <span ng-if="extraContent.release_at">
-                        Liberado em {{ extraContent.release_at | toDateTime:'DD/MM/YYYY' }}
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <div class="center" ed-pagination="extraContents.pagingInfo" refresh="getExtraContents(page)">
-              <ul class="pagination">
-                <li ed-pagination-previous>
-                  <a href=""><i class="fa fa-caret-left"></i></a>
-                </li>
-                <li ed-pagination-page="page" ng-repeat="page in paginationCtrl.pages">
-                  <a href="">{{ page }}</a>
-                </li>
-                <li ed-pagination-next>
-                  <a href=""><i class="fa fa-caret-right"></i></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+					<h3 class="panel-title">Progresso</h3>
+					<div class="label-progress">
+						<p>
+							<stacked-progress enrollment-id="{{ enrollment.id }}" success="{{ lessons_info.completed.length }}" warning="{{ lessons_info.in_progress.length }}" total="{{ lessons_info.total }}"></stacked-progress>
+						</p>
+					</div>
+				</div>
 
-        <div class="panel bulletinboard-panel">
-          <div class="panel-heading">
-            <strong class="panel-title">Quadro de avisos</strong>
-          </div>
-          <div class="panel-body">
-            <spinner name="board" class="small"></spinner>
-            <spinner name="enrollment" class="small"></spinner>
-            <div class="note note-info" ng-hide="bulletins == null || bulletins.length > 0" hide-on-load="board">
-              <p>Ainda não há nenhum aviso aqui.</p>
-            </div>
-            <div class="bulletin" ng-repeat="bulletin in bulletins">
-              <a ui-sref="school.dashboard.bulletin({ bulletinId: bulletin.id, courseId: course.id, courseClassId: courseClass.id, enrollmentId: enrollment.id })">{{ bulletin.subject }}</a>
-            </div>
-            <div class="center" ng-if="bulletins.length > 0" ed-pagination="bulletins.pagingInfo" refresh="getBoard(enrollment, course, page)">
-              <ul class="pagination pagination-sm">
-                <li ed-pagination-previous>
-                  <a href=""><i class="fa fa-caret-left"></i></a>
-                </li>
-                <li ed-pagination-page="page" ng-repeat="page in paginationCtrl.pages">
-                  <a href="">{{ page }}</a>
-                </li>
-                <li ed-pagination-next>
-                  <a href=""><i class="fa fa-caret-right"></i></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+				<div class="article-content-right">
+					<spinner name="course"></spinner>
+				</div>
+			</div>
+		</div>
+	</div>
+</article>

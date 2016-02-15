@@ -1,39 +1,40 @@
 <div class="module">
-  <div class="module-info">
-    <div class="title">
-      <a href ed-module-toggle="{module: module, default: 'closed'}" ng-click="getCourseContents(module)">{{ ::module.name }}</a>
+    <div class="module-info">
+        <div class="title">
+            <a href ed-module-toggle="{module: module, default: 'closed'}" ng-click="getCourseContents(module)">{{ ::module.name }}</a>
+        </div>
+        <spinner name="module{{ ::module.id }}.content" class="small"></spinner>
     </div>
-    <spinner name="module{{ ::module.id }}.content" class="small"></spinner>
-  </div>
 </div>
 <div ed-module-toggle-area="{module: module}">
-  <ol>
-    <li class="module-item sub" ng-repeat="module in module.course_modules | orderBy:'order'" ng-include="subTemplateUrl"></li>
-  </ol>
-  <ol>
-    <li class="module-item sub" ng-repeat="class in module.classes | orderBy:'order'">
-      <div class="class">
-        <div class="class-info" ng-class="{'active': $state.params.contentId == class.id.toString()}">
-          <progress-icon ng-model="class" ng-if="!class.disabled"></progress-icon>
-          <class-icon ng-model="class"></class-icon>
-          <a class="title" link-to="school.dashboard.course.content.media({ contentId: class.id })" ng-if="!class.disabled">{{ ::class.lesson.title }}</a>
-          <span class="title" ng-if="class.disabled">{{ ::class.lesson.title }}</span>
+    <ul>
+        <li class="module-item sub" ng-repeat="module in module.course_modules | orderBy:'order'" ng-include="subTemplateUrl"></li>
+    </ul>
+    <ul>
+        <li class="module-item sub" ng-repeat="class in module.classes | orderBy:'order'">
+            <a class="title" link-to="school.dashboard.course.content.media({ contentId: class.id })" ng-if="!class.disabled">
+                <div class="class video-lesson">
+                    <div class="class-info" ng-class="{'active': $state.params.contentId == class.id.toString()}">
+                        <!--<progress-icon ng-model="class" ng-if="!class.disabled"></progress-icon>
+                        <class-icon ng-model="class"></class-icon>-->
+                        <h3 class="title">{{ ::class.lesson.title }}</h3>
+                        <span class="title" ng-if="class.disabled">{{ ::class.lesson.title }}</span>
+                        <span ng-if="class.lesson.progress.views < enrollment.max_attendance_length && enrollment.max_attendance_type === 'attempts' && class.lesson.progress">
+                            <i tooltip="Você possui {{ class.lesson.progress.views }} de {{ ::enrollment.max_attendance_length }} visualizações. (Visualizações no mesmo dia são contabilizadas apenas uma vez)" tooltip-placement="left" class="fa fa-eye attempt">{{ class.lesson.progress.views }}/{{ ::enrollment.max_attendance_length }}</i>
+                        </span>
 
-          <span ng-if="class.lesson.progress.views < enrollment.max_attendance_length && enrollment.max_attendance_type === 'attempts' && class.lesson.progress" >
-            <i tooltip="Você possui {{ class.lesson.progress.views }} de {{ ::enrollment.max_attendance_length }} visualizações. (Visualizações no mesmo dia são contabilizadas apenas uma vez)" tooltip-placement="left" class="fa fa-eye attempt">{{ class.lesson.progress.views }}/{{ ::enrollment.max_attendance_length }}</i>
-          </span>
+                        <span ng-if="class.lesson.progress.views === enrollment.max_attendance_length && enrollment.max_attendance_type === 'attempts' && class.lesson.progress">
+                            <i tooltip="Você não possui mais visualizações nesta aula" tooltip-placement="left" class="fa fa-eye attempt attempt-red">{{ class.lesson.progress.views }}/{{ enrollment.max_attendance_length }}</i>
+                        </span>
 
-          <span ng-if="class.lesson.progress.views === enrollment.max_attendance_length && enrollment.max_attendance_type === 'attempts' && class.lesson.progress" >
-            <i tooltip="Você não possui mais visualizações nesta aula" tooltip-placement="left" class="fa fa-eye attempt attempt-red">{{ class.lesson.progress.views }}/{{ enrollment.max_attendance_length }}</i>
-          </span>
-
-          <span ng-if="class.disabled" class="pull-right">
-            <span ng-if="class.lesson.release_at">
-              Liberado a partir de {{ ::class.lesson.release_at | toDateTime:'DD/MM/YYYY' }}
-            </span>
-          </span>
-        </div>
-      </div>
-    </li>
-  </ol>
+                        <span ng-if="class.disabled" class="pull-right">
+                            <span ng-if="class.lesson.release_at">
+                                Liberado a partir de {{ ::class.lesson.release_at | toDateTime:'DD/MM/YYYY' }}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
 </div>

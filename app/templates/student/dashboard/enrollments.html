@@ -1,74 +1,80 @@
-<div class="dashboard">
-  <div class="alert alert-danger" ng-if="unauthorized">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>Acesso não autorizado. </strong> Esses são os cursos em que você está matriculado.
-  </div>
+<section class="enrollments">
+	<header class="article-header article-header-color-07">
+		<div class="center center-width-5">
+			<div class="article-header-content">
+				<h2 class="article-header-title">Meus cursos</h2>
+			</div>
+		</div>
+	</header>
+	<div class="center center-width-5">
+		<div class="clearfix">
+			<div class="dashboard">
+		<div class="alert alert-danger" ng-if="unauthorized">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<strong>Acesso não autorizado. </strong> Esses são os cursos em que você está matriculado.
+		</div>
 
-  <div class="container dashboard-panel">
-    <ul class="nav nav-tabs nav-tabs-lg">
-      <li class="active">
-        <a link-to="school.dashboard.enrollments">
-          <i class="fa fa-video-camera"></i>
-          <div>Cursos</div>
-        </a>
-      </li>
-      <li ng-if="hasEnrollmentWithCertificate(enrollments)">
-        <a link-to="school.dashboard.certificates">
-          <i class="fa fa-certificate"></i>
-          <div>Certificados</div>
-        </a>
-      </li>
-    </ul>
-    <section class="panel tab-content tab-content-bordered">
-      <div hide-on-load="dashboard">
-        <div ng-if="(enrollments == undefined || enrollments.length == 0) && (pendingEnrollments == undefined || pendingEnrollments.length === 0)" class="alert alert-warning">Você ainda não está matriculado em nenhum curso.</div>
-        <article class="col-md-4 col-sm-6 col-xs-12" ng-repeat="enrollment in enrollments">
-          <div class="course">
-            <div class="course-image">
-              <img ng-if="enrollment.course.logo !== null" ng-src="{{ enrollment.course.logo }}" />
-              <img ng-if="enrollment.course.logo === null" src="assets/images/missing-course-logo.png" />
-              <div class="course-edit-overlay" ng-if="enrollment.school_product.library_resource.resource_type === 'Course'">
-                <a class="btn btn-default btn-edit" link-to="school.dashboard.course.detail({ courseId: enrollment.school_product.library_resource.resource_id, enrollmentId: enrollment.id })">
-                  <i class="fa fa-video-camera"></i>
-                  <span>Assistir curso</span>
-                </a>
-              </div>
-              <div class="course-edit-overlay" ng-if="enrollment.school_product.library_resource.resource_type === 'Path'">
-                <a class="btn btn-default btn-edit" link-to="school.dashboard.path({ pathId: enrollment.school_product.library_resource.resource_id, enrollmentId: enrollment.id })">
-                  <i class="fa fa-video-camera"></i>
-                  <span>Acessar Path</span>
-                </a>
-              </div>
-            </div>
-            <div class="course-label">
-              <span max-lines="1">{{ enrollment.course.title }}</span>
-              <div class="course-status">
-                <i class="light-gray-text"><enrollment-status ng-model="enrollment"></enrollment-status></i>
-              </div>
-            </div>
-          </div>
-        </article>
-        <div class="row">
-          <div class="col-xs-12">
-            <h4 ng-if="pendingEnrollments != undefined && pendingEnrollments.length > 0">Matrículas pendentes:</h4>
-            <article class="col-md-4 col-sm-6 col-xs-12" ng-repeat="enrollment in pendingEnrollments">
-              <div class="course">
-                <div class="course-image">
-                  <img ng-if="enrollment.course.logo !== null" ng-src="{{ enrollment.course.logo }}" />
-                  <img ng-if="enrollment.course.logo === null" src="assets/images/missing-course-logo.png" />
-                </div>
-                <div class="course-label">
-                  <span max-lines="1">{{ enrollment.course.title }}</span>
-                  <div>
-                    <i class="light-gray-text"><enrollment-status ng-model="enrollment"></enrollment-status></i>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-      <spinner name="dashboard"></spinner>
-    </section>
-  </div>
-</div>
+		<div class="container dashboard-panel">
+			<section class="card-list masonry">
+				<div hide-on-load="dashboard">
+					<div ng-if="(enrollments == undefined || enrollments.length == 0) && (pendingEnrollments == undefined || pendingEnrollments.length === 0)" class="alert alert-warning">Você ainda não está matriculado em nenhum curso.</div>
+
+					<article class="card card-color-01 grid-sizer" data-view="10" data-date="10/01/2015" data-price="100" ng-repeat="enrollment in enrollments">
+						<div class="card-info">
+							<span>Online</span>
+							<span>Curso 8h</span>
+						</div>
+						<div class="card-image">
+							<img src="assets/images/fke/gestao-recursos-humanos.png" height="137" width="176" alt="" class="vertical-center">
+						</div>
+						<!--<div class="card-image">
+							<img class="vertical-center wp-post-image" alt="atitude-empreendedora" ng-if="enrollment.course.logo !== null" ng-src="{{ enrollment.course.logo }}"/>
+							<img class="vertical-center wp-post-image" alt="atitude-empreendedora" ng-if="enrollment.course.logo === null" src="assets/images/missing-course-logo.png"/>
+						</div>-->
+						<div class="card-content">
+							<h3 class="card-title">{{ enrollment.course.title }}</h3>
+
+							<div class="card-rating">
+								<svg width="80" height="13">
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/ico/symbol-defs.svg#icon-star" transform="translate(-32 0)" class="star-on"></use>
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/ico/symbol-defs.svg#icon-star" transform="translate(-16 0)" class="star-on"></use>
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/ico/symbol-defs.svg#icon-star" transform="translate(0 0)" class="star-on"></use>
+								</svg>
+							</div>
+						</div>
+						<span class="ribbon"><span class="ribbon-text">Gratuito</span></span>
+						<a link-to="school.dashboard.course.detail({ courseId: enrollment.school_product.library_resource.resource_id, enrollmentId: enrollment.id })" class="more-link more-link-card-color-01">
+
+							<span class="more-link-btn">Assistir curso</span> </a>
+					</article>
+
+					<div class="row">
+						<div class="col-xs-12">
+							<h4 ng-if="pendingEnrollments != undefined && pendingEnrollments.length > 0">Matrículas pendentes:</h4>
+							<article class="col-md-4 col-sm-6 col-xs-12" ng-repeat="enrollment in pendingEnrollments">
+								<div class="course">
+									<div class="course-image">
+										<img ng-if="enrollment.course.logo !== null" ng-src="{{ enrollment.course.logo }}"/>
+										<img ng-if="enrollment.course.logo === null" src="assets/images/missing-course-logo.png"/>
+									</div>
+									<div class="course-label">
+										<span max-lines="1">{{ enrollment.course.title }}</span>
+
+										<div>
+											<i class="light-gray-text">
+												<enrollment-status ng-model="enrollment"></enrollment-status>
+											</i>
+										</div>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+				</div>
+				<spinner name="dashboard"></spinner>
+			</section>
+		</div>
+	</div>
+		</div>
+	</div>
+</section>

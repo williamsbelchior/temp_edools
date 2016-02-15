@@ -1,55 +1,77 @@
-<div class="dashboard">
-  <div class="container dashboard-panel">
-    <spinner name="course"></spinner>
-    <div hide-on-load="course" class="row course-container">
-      <div class="course-infos col-md-4">
-        <div class="course-page panel text-center">
-          <br/>
-          <a link-to="school.dashboard.course.detail" ng-if="course.image_url">
-            <img class="course-page-image" ng-src="{{ course.image_url }}" alt="{{ course.name }}">
-          </a>
-          <h4>
-            <a link-to="school.dashboard.course.detail">
-              <strong>{{ course.name }}</strong>
-            </a>
-          </h4>
-        </div>
+<article class="dashboard">
+	<header class="article-header article-header-color-07">
+		<div class="center center-width-5">
+			<div class="article-header-content">
+				<h2 class="article-header-title">{{ course.name }}</h2>
+			</div>
+		</div>
+	</header>
+	<div class="article-content center center-width-5">
+		<div class="clearfix">
+			<div class="share">
+				<span class="share-text">Compartilhe em suas redes</span>
 
-        <div class="course-content panel">
-          <div class="panel-heading">
-            <strong class="panel-title">Conteúdo do curso</strong>
-          </div>
+				<div class="social-media">
+					<span class="social-media-counter">000</span>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=http://atendimento-novo.homolog.iea.com.br/cursos/administracao-de-pequenos-negocios-a-arte-de-gerenciar-com-facilidade-2/"
+							class="social-media-link facebook" title="Facebook">
+						<svg width="17" height="17" class="social-media-link-image">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="assets/images/ico/symbol-defs.svg#icon-facebook"></use>
+						</svg>
+					</a>
+				</div>
+				<div class="social-media">
+					<span class="social-media-counter">000</span>
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://atendimento-novo.homolog.iea.com.br/cursos/administracao-de-pequenos-negocios-a-arte-de-gerenciar-com-facilidade-2/"
+							class="social-media-link linkedin" title="Linkedin">
+						<svg width="17" height="17" class="social-media-link-image">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="assets/images/ico/symbol-defs.svg#icon-linkedin"></use>
+						</svg>
+					</a>
+				</div>
 
-          <div class="panel-body">
-            <content-tree type="dashboard" enrollment="enrollment" ng-model="course" lessons-info="lessons_info"></content-tree>
-          </div>
-        </div>
+				<div class="social-media">
+					<!-- <span class="social-media-counter">000</span> -->
+					<a href="https://twitter.com/home?status=http://atendimento-novo.homolog.iea.com.br/cursos/administracao-de-pequenos-negocios-a-arte-de-gerenciar-com-facilidade-2/"
+							class="social-media-link twitter" title="Twitter">
+						<svg width="17" height="17" class="social-media-link-image">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="assets/images/ico/symbol-defs.svg#icon-twitter"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
 
-        <div class="course-progress panel">
-          <div class="panel-heading">
-            <span class="panel-title">
-              <i class="panel-title-icon fa fa-check"></i>Progresso
-            </span>
-          </div>
+			<div class="clearfix">
+				<nav class="back" ng-if="$session.get() != undefined">
+					<a link-to="school.dashboard.enrollments" class="back-link">&lt; Visualizar cursos</a>
+				</nav>
+			</div>
 
-          <div class="panel-body">
-            <stacked-progress enrollment-id="{{ enrollment.id }}" success="{{ lessons_info.completed.length }}" warning="{{ lessons_info.in_progress.length }}" total="{{ lessons_info.total }}"></stacked-progress>
-          </div>
-        </div>
-      </div>
+			<div class="article-content-text">
+				<div class="article-content-left">
+					<div class="content-tree">
+						<content-tree type="dashboard" ng-model="course" enrollment="enrollment" lessons-info="lessons_info"></content-tree>
+					</div>
 
-      <div class="card panel col-md-8 course-content-player">
-        <div ui-view></div>
-        <spinner name="content" class="small"></spinner>
-        <div class="next-prev-container">
-          <button class="btn btn-default btn-lg" goto-previous-content tooltip="Anterior">
-            <i class="fa fa-fast-backward btn-label"></i>
-          </button>
-          <button class="btn btn-default btn-lg" goto-next-content tooltip="Próximo">
-            <i class="fa fa-fast-forward btn-label"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+					<h3 class="panel-title">Progresso</h3>
+					<div class="label-progress">
+						<p>
+							<stacked-progress enrollment-id="{{ enrollment.id }}" success="{{ lessons_info.completed.length }}" warning="{{ lessons_info.in_progress.length }}" total="{{ lessons_info.total }}"></stacked-progress>
+						</p>
+					</div>
+				</div>
+
+				<div hide-on-load="course" class="article-content-right">
+					<spinner name="course"></spinner>
+					<div class="course-content-player">
+						<div ui-view></div>
+						<spinner name="content" class="small"></spinner>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</article>

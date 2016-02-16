@@ -1,21 +1,22 @@
 <payment-processing-page timer="60">
-  <div class="container">
-    <payment-processing-content>
-      <spinner name="processing"></spinner>
-      <h2 class="processing-title">Estamos processando seu pagamento, aguarde...</h2>
-      <timer countdown="60" interval="1000">{{ mminutes }}:{{ sseconds }}</timer>
-    </payment-processing-content>
+	<div class="container">
+		<payment-processing-content>
+			<spinner name="processing"></spinner>
+			<h2 class="processing-title">Estamos processando seu pagamento, aguarde...</h2>
+			<timer countdown="60" interval="1000">{{ mminutes }}:{{ sseconds }}</timer>
+		</payment-processing-content>
 
-    <payment-processing-success redirect-time="10">
-      <h2>
-        Sua compra foi aprovada! Você será direcionado ao curso em instantes.
-      </h2>
-    </payment-processing-success>
-    <payment-processing-failure>
-      <h2>Sua compra ainda não foi autorizada pelo banco emissor. Não se preocupe, nós recebemos o seu pedido, porém é normal que o processo dure um pouco mais às vezes. Nós notificaremos você por email assim que a compra for concluída.</h2>
-    </payment-processing-failure>
-    <payment-processing-cancel>
-      <h2>Infelizmente, sua compra foi cancelada pelo gateway de pagamento ou pelo banco emissor do seu cartão de crédito. Sugerimos que você tente realizar a compra novamente, utilizando outro meio de pagamento. <a link-to="school.home">Clique aqui</a> para voltar à página inicial da escola.</h2>
-    </payment-processing-cancel>
-  </div>
+		<payment-processing-success redirect-time="10">
+			<h2>
+				Sua compra foi aprovada! Você será direcionado ao curso em instantes.
+			</h2>
+		</payment-processing-success>
+		<payment-processing-failure>
+			<h2>Sua compra ainda não foi autorizada pelo banco emissor. Não se preocupe, nós recebemos o seu pedido, porém é normal que o processo dure um pouco mais às vezes. Nós notificaremos você por email assim que a compra for concluída.</h2>
+		</payment-processing-failure>
+		<payment-processing-cancel>
+			<h2>Infelizmente, sua compra foi cancelada pelo gateway de pagamento ou pelo banco emissor do seu cartão de crédito. Sugerimos que você tente realizar a compra novamente, utilizando outro meio de pagamento.
+				<a link-to="school.home">Clique aqui</a> para voltar à página inicial da escola.</h2>
+		</payment-processing-cancel>
+	</div>
 </payment-processing-page>

@@ -1,50 +1,49 @@
 <div class="dashboard">
-  <div class="container dashboard-panel">
-    <h3>Meus Pedidos</h3>
+	<div class="container dashboard-panel">
+		<h3>Meus Pedidos</h3>
 
-    <div class="panel">
-      <div class="panel-body">
-        <spinner name="orders"></spinner>
-        <table hide-on-load="orders" class="order-table table table-bordered">
-          <thead>
-            <tr>
-              <th class="col-xs-1">Nº</th>
-              <th class="col-xs-4">Status</th>
-              <th class="col-xs-3 text-center">Data do pedido</th>
-              <th class="col-xs-3">
-                <span class="pull-right">Total</span>
-              </th>
-              <th class="col-xs-1"></th>
-            </tr>
-          </thead>
-          <tbody ng-repeat="order in orders | orderBy:'created_at':true">
-            <tr>
-              <td class="column id">{{ order.id }}</td>
-              <td class="column status">{{ order.status | translate }}</td>
-              <td class="column creation text-center">{{ order.lastPaymentCreatedAt | toSaoPauloTimeZone | toDateTime }}</td>
-              <td class="column total">
-                <span class="pull-right">{{ order.amount_to_pay | money:'R$' }}</span>
-              </td>
-              <td class="column items">
-                <a class="pointer" ng-click="order.viewItems = !order.viewItems">
-                  <span class="label label-info">ver itens do pedido</span>
-                </a>
-              </td>
-            </tr>
-            <tr ng-if="order.viewItems">
-              <td class="order-items" ng-repeat="item in order.items" colspan="5">
-                <div class="col-xs-3">
-                  <span class="label label-default">{{ item.product.name || item.credit.name }}</span>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+		<div class="panel">
+			<div class="panel-body">
+				<spinner name="orders"></spinner>
+				<table hide-on-load="orders" class="order-table table table-bordered">
+					<thead>
+					<tr>
+						<th class="col-xs-1">Nº</th>
+						<th class="col-xs-4">Status</th>
+						<th class="col-xs-3 text-center">Data do pedido</th>
+						<th class="col-xs-3">
+							<span class="pull-right">Total</span>
+						</th>
+						<th class="col-xs-1"></th>
+					</tr>
+					</thead>
+					<tbody ng-repeat="order in orders | orderBy:'created_at':true">
+					<tr>
+						<td class="column id">{{ order.id }}</td>
+						<td class="column status">{{ order.status | translate }}</td>
+						<td class="column creation text-center">{{ order.lastPaymentCreatedAt | toSaoPauloTimeZone | toDateTime }}</td>
+						<td class="column total">
+							<span class="pull-right">{{ order.amount_to_pay | money:'R$' }}</span>
+						</td>
+						<td class="column items">
+							<a class="pointer" ng-click="order.viewItems = !order.viewItems">
+								<span class="label label-info">ver itens do pedido</span> </a>
+						</td>
+					</tr>
+					<tr ng-if="order.viewItems">
+						<td class="order-items" ng-repeat="item in order.items" colspan="5">
+							<div class="col-xs-3">
+								<span class="label label-default">{{ item.product.name || item.credit.name }}</span>
+							</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
 
-        <div class="alert alert-info" hide-on-load="orders" ng-if="orders == undefined || orders.length == 0">
-          Você ainda não fez nenhum pedido. Confira <a ui-sref="school.home">nossos cursos</a>.
-        </div>
-      </div>
-    </div>
-  </div>
+				<div class="alert alert-info" hide-on-load="orders" ng-if="orders == undefined || orders.length == 0">
+					Você ainda não fez nenhum pedido. Confira <a ui-sref="school.home">nossos cursos</a>.
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

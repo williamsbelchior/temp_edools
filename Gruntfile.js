@@ -1,7 +1,7 @@
 'use strict';
 var config = require('./theme-config.json');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
@@ -77,7 +77,7 @@ module.exports = function(grunt) {
           open: true,
           keepAlive: true,
           base: ['./.tmp', './app'],
-          middleware: function(connect, opts, middlewares) {
+          middleware: function (connect, opts, middlewares) {
             var edoolsMiddleware = require('edools-connect-middleware').middleware({
               theme: config.theme_id,
               token: config.token,
@@ -140,18 +140,18 @@ module.exports = function(grunt) {
 
     // Automatically inject Bower components into the app
     bowerInstall: {
-      app: {
-        src: ['<%= theme.app %>/index.html'],
-        ignorePath: '<%= theme.app %>/',
-        exclude: [
-          'bower_components/font-awesome/css/font-awesome.css'
-        ]
-      },
-      sass: {
-        src: ['<%= theme.app %>/styles/**/*.{scss,sass}'],
-        ignorePath: '<%= theme.app %>/bower_components/'
-      }
-    },
+     app: {
+       src: ['<%= theme.app %>/index.html'],
+       ignorePath: '<%= theme.app %>/',
+       exclude: [
+         'bower_components/font-awesome/css/font-awesome.css'
+       ]
+     },
+     sass: {
+       src: ['<%= theme.app %>/styles/**/*.{scss,sass}'],
+       ignorePath: '<%= theme.app %>/bower_components/'
+     }
+   },
 
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
@@ -369,11 +369,8 @@ module.exports = function(grunt) {
         options: {
           archive: '<%= theme.public %>/<%= pkg.name %>.zip',
         },
-        files: [{
-          expand: true,
-          cwd: '<%= theme.dist %>/',
-          src: ['**']
-        } // includes files in path and its subdirs
+        files: [
+          {expand: true, cwd: '<%= theme.dist %>/' ,src: ['**']} // includes files in path and its subdirs
         ]
       }
     },
@@ -386,11 +383,9 @@ module.exports = function(grunt) {
         package_file: '<%= theme.public %>/<%= pkg.name %>.zip'
       },
       dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= theme.dist %>/',
-          src: ['**']
-        }]
+        files: [
+          {expand: true, cwd: '<%= theme.dist %>/' ,src: ['**']}
+        ]
       }
     },
 
@@ -404,7 +399,7 @@ module.exports = function(grunt) {
   });
 
 
-  grunt.registerTask('serve', function(target) {
+  grunt.registerTask('serve', function (target) {
     grunt.task.run([
       'clean:server',
       'bowerInstall',
@@ -416,7 +411,7 @@ module.exports = function(grunt) {
     ]);
   });
 
-  grunt.registerTask('server', function(target) {
+  grunt.registerTask('server', function (target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
     grunt.task.run(['serve:' + target]);
   });

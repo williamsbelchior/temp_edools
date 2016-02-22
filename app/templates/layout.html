@@ -44,16 +44,19 @@
 			<div class="menu-actions menu-actions-logged" ng-if="$session.get() != undefined">
 				<a href="#" class="user-logged-link">Olá {{ $session.get().first_name }}</a>
 
-				<ul class="user-logged-menu clearfix">
-					<li class="user-logged-menu-item">
-						<a href="/meu-espaco" class="user-logged-menu-link">Meu espaço</a>
-					</li>
-					<li class="user-logged-menu-item">
-					</li>
-					<li class="user-logged-menu-item">
-						<a href="http://portal-atendimento.local/wp-login.php?action=logout&amp;redirect_to=http%3A%2F%2Fportal-atendimento.local&amp;_wpnonce=bb640f657a" class="user-logged-menu-link">Sair</a>
-					</li>
-				</ul>
+                <div class="user-logged-menu-wrapper">
+                    <ul class="user-logged-menu clearfix">
+                        <li class="user-logged-menu-item">
+                            <a link-to="school.dashboard.enrollments" class="user-logged-menu-link">Meu espaço</a>
+                        </li>
+                        <li class="user-logged-menu-item">
+                            <a link-to="school.dashboard.enrollments" class="user-logged-menu-link">Ambiente de estudos</a>
+                        </li>
+                        <li class="user-logged-menu-item">
+                            <a link-to="school.auth.logout" class="user-logged-menu-link">Sair</a>
+                        </li>
+                    </ul>
+                </div>
 
 			</div>
 		</div>

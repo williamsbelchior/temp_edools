@@ -241,8 +241,8 @@
 		width: auto;
 	}
 
-	.article-content-left,
-	.article-content-right{
+	.article-content-wrapper,
+	.article-content-aside{
 		float: none;
 		margin-right: 0;
 		width: 100%;

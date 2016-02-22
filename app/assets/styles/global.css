@@ -395,16 +395,24 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: -3px;
 }
 
+.user-logged-menu-wrapper{
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 15px;
+    padding-top: 13px;
+}
+
 .user-logged-menu {
-	display: none;
-	position: absolute;
-	top: 43px;
-	left: 15px;
 	width: 160px;
 	background: #fff;
 	padding: 10px 20px;
 	border-top: 2px solid #76cff1;
 	box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.15);
+}
+
+.menu-actions:hover .user-logged-menu-wrapper{
+    display: block;
 }
 
 .user-logged-menu-open .user-logged-menu {
@@ -1325,6 +1333,7 @@ h1, h2, h3, h4, h5, h6 {
 	height: 80px;
 	background: #fff;
 	padding: 0 10px;
+    position: relative;
 }
 
 .card-title {
@@ -4564,16 +4573,24 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 1.4em;
 }
 
-.article-content-left {
+.article-content-wrapper {
 	float: left;
 	margin-right: 60px;
-	width: 250px;
+    width: 760px;
 }
 
-.article-content-right {
+.article-content-wrapper.inverse {
+    margin-right: 0;
+}
+
+.article-content-aside {
 	float: left;
 	display: block;
-	width: 760px;
+    width: 250px;
+}
+
+.article-content-aside.inverse {
+    margin-right: 60px;
 }
 
 .content-tree .title > a {
@@ -4644,6 +4661,40 @@ h1, h2, h3, h4, h5, h6 {
 	fill: #76cff1;
 }
 
+.card-content .card-course-in-progress{
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    left: 0;
+    padding: 0 10px;
+}
+
 .card-course-in-progress .progress{
 	height: 10px;
+    margin: 0;
+}
+
+.enrollments.my-space{
+    padding-top: 40px;
+}
+
+.card-big.card-width-2.course-info{
+    width: 100%;
+    margin: 0 0 20px 0;
+}
+
+.card-big.course-info .card-image {
+    height: 200px;
+    float: right;
+    margin: 45px 45px 0 0;
+}
+
+.card-big.course-info .card-title {
+    font-size: 2.8em;
+}
+
+.card-big.card-width-2.course-info .card-content{
+    bottom: inherit;
+    height: initial;
+    top: 135px;
 }

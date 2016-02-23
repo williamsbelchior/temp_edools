@@ -1,10 +1,12 @@
 <article class="dashboard">
-	<header class="article-header article-header-color-07">
+	<header class="article-header article-header-color-01">
 		<div class="center center-width-5">
 			<div class="article-header-content">
 				<h2 class="article-header-title">{{ course.name }}</h2>
-				<!--<strong class="panel-title">Material complementar</strong>-->
 			</div>
+            <div class="article-header-image">
+                <img src="assets/images/gestao-recursos-humanos.png" height="137" width="176" alt="" class="vertical-center">
+            </div>
 		</div>
 	</header>
 	<div class="article-content center center-width-5">
@@ -14,7 +16,7 @@
 
 				<div class="social-media">
 					<span class="social-media-counter">000</span>
-					<a href="https://www.facebook.com/sharer/sharer.php?u=http://atendimento-novo.homolog.iea.com.br/cursos/administracao-de-pequenos-negocios-a-arte-de-gerenciar-com-facilidade-2/"
+					<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $location.absUrl() }}"
 							class="social-media-link facebook" title="Facebook">
 						<svg width="17" height="17" class="social-media-link-image">
 							<use xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -24,7 +26,7 @@
 				</div>
 				<div class="social-media">
 					<span class="social-media-counter">000</span>
-					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://atendimento-novo.homolog.iea.com.br/cursos/administracao-de-pequenos-negocios-a-arte-de-gerenciar-com-facilidade-2/"
+					<a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ $location.absUrl() }}"
 							class="social-media-link linkedin" title="Linkedin">
 						<svg width="17" height="17" class="social-media-link-image">
 							<use xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -35,7 +37,7 @@
 
 				<div class="social-media">
 					<!-- <span class="social-media-counter">000</span> -->
-					<a href="https://twitter.com/home?status=http://atendimento-novo.homolog.iea.com.br/cursos/administracao-de-pequenos-negocios-a-arte-de-gerenciar-com-facilidade-2/"
+					<a target="_blank" href="https://twitter.com/home?status={{ $location.absUrl() }}"
 							class="social-media-link twitter" title="Twitter">
 						<svg width="17" height="17" class="social-media-link-image">
 							<use xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -52,7 +54,7 @@
 
 			<div class="clearfix">
 				<div class="article-content-text">
-					<div class="article-content-wrapper">
+					<div class="article-content-aside inverse">
 						<div class="extra-content" ng-if="extraContents.length > 0">
 							<h3 class="panel-title">Material extra</h3>
 							<spinner name="extraContents" class="small"></spinner>
@@ -60,7 +62,7 @@
 								<li class="module-item root" ng-repeat="extraContent in extraContents">
 									<div class="class">
 										<div class="class-info" ng-class="{'active': $state.params.extraContentId == extraContent.id.toString()}">
-											<media-icon type="extraContent.media.type"></media-icon>
+											<!--<media-icon type="extraContent.media.type"></media-icon>-->
 											<span ng-class="{'label-info': $state.params.extraContentId == extraContent.id.toString()}" ng-if="!extraContent.disabled">
 												<a class="title" link-to="school.dashboard.course.extraContent.media({ extraContentId: extraContent.id })">{{ extraContent.title }}</a>
 											</span>
@@ -90,7 +92,7 @@
 					</div>
 				</div>
 
-				<div class="article-content-aside">
+				<div class="article-content-wrapper inverse">
 					<spinner name="course"></spinner>
 					<div hide-on-load="course" class="course-container">
 

@@ -5,7 +5,7 @@
 				<h2 class="article-header-title">{{ course.name }}</h2>
 			</div>
             <div class="article-header-image">
-                <img src="assets/images/fke/gestao-recursos-humanos.png" height="137" width="176" alt="" class="vertical-center">
+                <img src="assets/images/gestao-recursos-humanos.png" height="137" width="176" alt="" class="vertical-center">
             </div>
 		</div>
 	</header>
@@ -16,7 +16,7 @@
 
 				<div class="social-media">
 					<span class="social-media-counter">000</span>
-					<a href="https://www.facebook.com/sharer/sharer.php?u=http://atendimento-novo.homolog.iea.com.br/cursos/administracao-de-pequenos-negocios-a-arte-de-gerenciar-com-facilidade-2/"
+					<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $location.absUrl() }}"
 							class="social-media-link facebook" title="Facebook">
 						<svg width="17" height="17" class="social-media-link-image">
 							<use xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -26,7 +26,7 @@
 				</div>
 				<div class="social-media">
 					<span class="social-media-counter">000</span>
-					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://atendimento-novo.homolog.iea.com.br/cursos/administracao-de-pequenos-negocios-a-arte-de-gerenciar-com-facilidade-2/"
+					<a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ $location.absUrl() }}"
 							class="social-media-link linkedin" title="Linkedin">
 						<svg width="17" height="17" class="social-media-link-image">
 							<use xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -37,7 +37,7 @@
 
 				<div class="social-media">
 					<!-- <span class="social-media-counter">000</span> -->
-					<a href="https://twitter.com/home?status=http://atendimento-novo.homolog.iea.com.br/cursos/administracao-de-pequenos-negocios-a-arte-de-gerenciar-com-facilidade-2/"
+					<a target="_blank" href="https://twitter.com/home?status={{ $location.absUrl() }}"
 							class="social-media-link twitter" title="Twitter">
 						<svg width="17" height="17" class="social-media-link-image">
 							<use xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -61,11 +61,14 @@
 
                     <div class="progress-content">
                         <h3 class="panel-title">Progresso</h3>
-                        <div class="label-progress">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning" style="width: {{ enrollment.progress }}%"></div>
+                        </div>
+                        <!--<div class="label-progress">
                             <p>
                                 <stacked-progress enrollment-id="{{ enrollment.id }}" success="{{ lessons_info.completed.length }}" warning="{{ lessons_info.in_progress.length }}" total="{{ lessons_info.total }}"></stacked-progress>
                             </p>
-                        </div>
+                        </div>-->
                     </div>
 
 
@@ -76,7 +79,7 @@
                             <li class="module-item root" ng-repeat="extraContent in extraContents">
                                 <div class="class">
                                     <div class="class-info" ng-class="{'active': $state.params.extraContentId == extraContent.id.toString()}">
-                                        <media-icon type="extraContent.media.type"></media-icon>
+                                        <!--<media-icon type="extraContent.media.type"></media-icon>-->
 										<span ng-class="{'label-info': $state.params.extraContentId == extraContent.id.toString()}" ng-if="!extraContent.disabled">
 											<a class="title" link-to="school.dashboard.course.extraContent.media({ extraContentId: extraContent.id })">{{ extraContent.title }}</a>
 										</span>

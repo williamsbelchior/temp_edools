@@ -12,25 +12,22 @@
 <html class="no-js">
 <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<title>Portal de Atendimento SEBRAE</title>
-	<meta name="viewport" content="width=device-width">
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="utf-8">
+    <title>Portal de Atendimento SEBRAE</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-	<!-- build:css({.tmp,app}) assets/styles/main.css -->
-	<!-- bower:css -->
-	<link rel="stylesheet" href="assets/styles/global.css">
-	<link rel="stylesheet" href="assets/styles/animation.css">
-	<link rel="stylesheet" href="assets/styles/fonts.css">
-	<link rel="stylesheet" href="assets/styles/form.css">
-	<link rel="stylesheet" href="assets/styles/tablet.css">
-	<link rel="stylesheet" href="assets/styles/smartphone.css">
-	<!-- endbuild -->
+    <!-- build:css({.tmp,app}) assets/styles/main.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
 
-	<script src="assets/scripts/dist/modernizr.js"></script>
+    <!--<script src="assets/scripts/dist/modernizr.js"></script>-->
 
-	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic,300italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic,300italic,700italic,900italic' rel='stylesheet' type='text/css'>
 </head>
 <body data-type="school" class="internal">
 <div id="schoolapp" ui-view></div>
@@ -41,23 +38,25 @@
 <script src="bower_components/es5-shim/es5-shim.js"></script>
 <script src="bower_components/json3/lib/json3.min.js"></script>
 <script src="bower_components/bootbox.js/bootbox.js"></script>
+<!-- endbuild -->
 
-<script src="assets/scripts/dist/svg4everybody.min.js"></script>
+<!-- build:js({.tmp,app}) assets/scripts/app.js -->
+<script src="assets/scripts/dist/modernizr.js"></script>
+<script src="assets/scripts/dist/jquery-1.10.1.min.js"></script>
 <script src="assets/scripts/dist/site.js"></script>
 <script src="assets/scripts/dist/svgxuse.js"></script>
+<script src="assets/scripts/dist/svg4everybody.min.js"></script>
 <script src="assets/scripts/dist/sebrae.js"></script>
 <!-- endbuild -->
 
-<!-- build:js({.tmp,app}) assets/scripts/app.js --><!-- endbuild -->
-
 <div id="fb-root"></div>
 <script>(function (d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s);
-	js.id = id;
-	js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=632320270166624&version=v2.0";
-	fjs.parentNode.insertBefore(js, fjs);
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=632320270166624&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 </body>
 </html>

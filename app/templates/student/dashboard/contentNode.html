@@ -1,7 +1,7 @@
 <div class="module">
 	<div class="module-info">
 		<div class="title">
-			<a href ed-module-toggle="{module: module, default: 'closed'}" ng-click="getCourseContents(module)">{{ ::module.name }}</a>
+			<a class="js-module-link" href ed-module-toggle="{module: module, default: 'closed'}" ng-click="getCourseContents(module)">{{ ::module.name }}</a>
 		</div>
 		<spinner name="module{{ ::module.id }}.content" class="small"></spinner>
 	</div>

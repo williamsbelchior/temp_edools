@@ -58,5 +58,12 @@
     js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=632320270166624&version=v2.0";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
+<script>
+  Edools.events.subscribe('school.dashboard', function () {
+    var firstModuleLink = $('.js-module-link')[0];
+    if (firstModuleLink) { firstModuleLink.click(); }
+  })
+</script>
 </body>
 </html>
